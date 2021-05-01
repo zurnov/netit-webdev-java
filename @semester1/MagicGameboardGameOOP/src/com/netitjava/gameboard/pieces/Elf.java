@@ -5,11 +5,7 @@ public class Elf extends Piece {
 	public Elf(int row,int col) {
 		super(row,col,5,1,10,3,3);
 		
-//		this.setAttack(5);
-//		this.setDefence(1);
-//		this.setHealth(10);
-//		this.setDistance(3);
-//		this.setSpeed(3);
+
 	}
 
 	@Override

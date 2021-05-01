@@ -2,14 +2,14 @@ package com.netitjava.gameboard.pieces;
 
 public class Knight extends Piece {
 	
+	public Knight() {
+		super(-1, -1, 8,3,15,1,1);
+		
+	}
+	
 	public Knight(int row,int col) {
 		super(row, col, 8,3,15,1,1);
 		
-//		this.setAttack(8);
-//		this.setDefence(3);
-//		this.setHealth(15);
-//		this.setDistance(1);
-//		this.setSpeed(1);
 	}
 
 	@Override
