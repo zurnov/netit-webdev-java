@@ -13,19 +13,19 @@ public class Knight extends Piece {
 	}
 
 	@Override
-	public void move() {
+	public boolean isMovePossible(int row, int col) {
+		return false;
+		
+	}
+
+	@Override
+	public void isHealPossible() {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void heal() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void attack() {
+	public void isAttackPossible() {
 		// TODO Auto-generated method stub
 		
 	}
@@ -33,6 +33,12 @@ public class Knight extends Piece {
 	@Override
 	public String render() {
 		return "%";
+	}
+
+	@Override
+	public String getPieceName() {
+		
+		return "Рицар";
 	}
  
 }

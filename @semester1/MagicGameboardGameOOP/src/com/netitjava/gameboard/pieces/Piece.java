@@ -4,6 +4,9 @@ import com.netitjava.gameboard.GameBoardObject;
 
 public abstract class Piece extends GameBoardObject {
 	
+	protected int row;
+	protected int col;
+	
 	protected int attack;
 	protected int defence;
 	protected int health;
@@ -12,6 +15,8 @@ public abstract class Piece extends GameBoardObject {
 	
 	public Piece(int row,int col,int attack, int defence, int health, int distance, int speed) {
 		super();
+		this.row = row;
+		this.col = col;
 		this.attack = attack;
 		this.defence = defence;
 		this.health = health;
@@ -49,9 +54,15 @@ public abstract class Piece extends GameBoardObject {
 		this.speed = speed;
 	}
 	
-	public abstract void move();
-	public abstract void heal();
-	public abstract void attack();
+	public void move(int row,int col) {
+		this.row = row;
+		this.col = col;
+	}
+	
+	public abstract boolean isMovePossible(int row, int col);
+	public abstract void isHealPossible();
+	public abstract void isAttackPossible();
+	public abstract String getPieceName();
 	
 	
 }
