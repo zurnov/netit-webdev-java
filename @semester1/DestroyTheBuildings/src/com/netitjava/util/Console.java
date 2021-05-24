@@ -1,3 +1,4 @@
+
 package com.netitjava.util;
 
 import java.util.Scanner;
@@ -9,6 +10,10 @@ public final class Console {
 	}
 	
 	public static void log(String message) {
+		System.out.print(message);
+	}
+	
+	public static void logln(String message) {
 		System.out.println(message);
 	}	
 
