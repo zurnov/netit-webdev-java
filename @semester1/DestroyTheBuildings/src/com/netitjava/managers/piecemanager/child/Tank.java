@@ -1,5 +1,12 @@
 package com.netitjava.managers.piecemanager.child;
 
-public class Tank {
+import com.netitjava.managers.piecemanager.parent.Unit;
 
+public class Tank extends Unit {
+
+	public Tank(int row,int col) {
+		this.setRow(row);
+		this.setCol(col);
+		this.setSymbol("1");
+	}
 }

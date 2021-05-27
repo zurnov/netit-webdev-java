@@ -1,14 +1,12 @@
 package com.netitjava;
-import com.netitjava.managers.gameboardmanager.*;
-import com.netitjava.managers.GameManager;
-import com.netitjava.managers.piecemanager.*;
+
+import com.netitjava.managers.gameboard.GameboardManager;
 
 public class Application {
 	
 	public static void main(String[] args) {
+		(new GameboardManager()).start();
 		
-		GameManager game = new GameManager();
-		game.startGame();
 		
 		
 	}

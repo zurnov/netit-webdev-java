@@ -1,29 +1,28 @@
-package com.netitjava.managers.gameboardmanager;
+package com.netitjava.managers.piecemanager.parent;
 
-public abstract class GameboardObject {
+public class Unit {
 
 	protected int row;
 	protected int col;
+	protected String symbol;
 	
-	public GameboardObject(int row,int col) {
-		this.row = row;
-		this.col = col;
-	}
-
 	public int getRow() {
 		return row;
 	}
-
 	public void setRow(int row) {
 		this.row = row;
 	}
-
 	public int getCol() {
 		return col;
 	}
-
 	public void setCol(int col) {
 		this.col = col;
 	}
-	public abstract String render();
+	public String getSymbol() {
+		return symbol;
+	}
+	public void setSymbol(String symbol) {
+		this.symbol = symbol;
+	}
+	
 }
