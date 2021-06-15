@@ -1,9 +1,11 @@
 package com.netitjava.managers.gameboard;
 
+import java.util.Random;
+
 import com.netitjava.managers.piecemanager.child.*;
 import com.netitjava.managers.piecemanager.child.Tile;
 import com.netitjava.util.Console;
-
+import com.netitjava.managers.piecemanager.child.buildings.*;
 public class GameboardManager {
 
 	private final int GAMEBOARD_SIZE = 15;
@@ -36,16 +38,20 @@ public class GameboardManager {
 				if(gameboard[row][col] instanceof Wrecker) {
 					Console.log(((Wrecker) this.gameboard[row][col]).getSymbol());
 				}
+				if(gameboard[row][col] instanceof SmallBuilding) {
+					Console.log(((SmallBuilding) this.gameboard[row][col]).getSymbol());
+				}
 				
 			}
 			Console.logln("");
 		
 		}
-		this.isBuildingPlacementPossible(14,10,2,2);
+	
 	}
 	private void boostrap() {
 		this.generateTile();
 		this.generateTeam();
+		this.generateSmallBuilding();
 		
 		
 	}
@@ -69,8 +75,25 @@ public class GameboardManager {
 		this.gameboard[row][col] = element;
 	}
 	
-	private void generateSmallBuilding(int row,int col,int size) {
+	private void generateSmallBuilding() {
+		int generatedBuidlingRow = generateBuildingPosX();
+		int generatedBuidlingCol = generateBuildingPosY();
+		System.out.println(generatedBuidlingRow);
+		System.out.println(generatedBuidlingCol);
+		if(generatedBuidlingCol != 13 && generatedBuidlingRow != 13) {
+			
+			this.setGameboardElement(generatedBuidlingRow, generatedBuidlingCol,new SmallBuilding(generatedBuidlingRow,generatedBuidlingCol));
+			this.setGameboardElement(--generatedBuidlingRow,--generatedBuidlingCol,new SmallBuilding(generatedBuidlingRow,generatedBuidlingCol));
+			this.setGameboardElement(generatedBuidlingRow,++generatedBuidlingCol,new SmallBuilding(generatedBuidlingRow,generatedBuidlingCol));
+			this.setGameboardElement(++generatedBuidlingRow,--generatedBuidlingCol,new SmallBuilding(generatedBuidlingRow,generatedBuidlingCol));
+		}
+		else {
+			this.setGameboardElement(generatedBuidlingRow, generatedBuidlingCol,new SmallBuilding(generatedBuidlingRow,generatedBuidlingCol));
+			this.setGameboardElement(++generatedBuidlingRow,++generatedBuidlingCol,new SmallBuilding(generatedBuidlingRow,generatedBuidlingCol));
+			this.setGameboardElement(generatedBuidlingRow,--generatedBuidlingCol,new SmallBuilding(generatedBuidlingRow,generatedBuidlingCol));
+			this.setGameboardElement(--generatedBuidlingRow,++generatedBuidlingCol,new SmallBuilding(generatedBuidlingRow,generatedBuidlingCol));
 		
+		}
 	}
 	private boolean isBuildingPlacementPossible(int row,int col,int lenght,int wight) {
 		if(this.isTileClear(row, col)){
@@ -100,4 +123,15 @@ public class GameboardManager {
 		}
 		return false;
 	}
+	private int generateBuildingPosX() {
+		Random random = new Random();
+		int randomRow = random.nextInt(15 - 1) + 1;
+		return randomRow;
+	}
+	private int generateBuildingPosY() {
+		Random random = new Random();
+		int randomCol = random.nextInt(15 - 1) + 1;
+		return randomCol;
+	}
+	
 }

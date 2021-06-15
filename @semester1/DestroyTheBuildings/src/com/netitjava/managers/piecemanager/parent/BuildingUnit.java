@@ -1,5 +1,7 @@
 package com.netitjava.managers.piecemanager.parent;
 
+import java.util.Random;
+
 public class BuildingUnit {
 	protected int row;
 	protected int col;
@@ -36,8 +38,5 @@ public class BuildingUnit {
 	}
 	public void setBreakable(boolean isBreakable) {
 		this.isBreakable = isBreakable;
-	}
-	
-	
-	
+	}	
 }
