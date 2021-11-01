@@ -27,7 +27,7 @@ public class HomeServlet extends HttpServlet {
 		session.setAttribute("user_name", userName);
 		session.setAttribute("user_gender", userGender);
 		session.setAttribute("is_greeted", "Y");
-		req.setAttribute("user_age", 10);
+		session.setAttribute("user_age", userAge);
 		
 		// 2. In memory 
 		

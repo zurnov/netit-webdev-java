@@ -48,9 +48,10 @@ public class FormProcessor extends HttpServlet {
 		try {
 		String name = arg0.getParameter("user_name");
 		int age = Integer.parseInt(arg0.getParameter("user_age"));
+		String job = arg0.getParameter("user_job");
 		String redirect = "error.jsp";
 		
-		boolean isBace = name.equals("Boiko") && age == 61;
+		boolean isBace = name.equals("Boiko") && age == 61 && job.equals("kradec");
 		
 		if(isBace) {
 			redirect = "succsess.jsp";

@@ -36,12 +36,12 @@
 				value="male" 
 				placeholder="my age">
 				
-			Fimale
+			Female
 			<input
 				name="user_gender" 
 				class="input"
 				type="radio"
-				value="fimale" 
+				value="female" 
 				placeholder="my age">
 			
 			<label>Favorite color</label>
@@ -55,6 +55,7 @@
 				<option value="white">white</option>
 				<option value="black">black</option>
 				<option value="colorful">colorful</option>
+				<option value="alelelepak">alelelepak</option>
 			</select>
 			
 			

@@ -12,6 +12,7 @@
 	<h2>Login</h2>
 	
 	<form action="login">
+	
 	<input type= "text" 
 	placeholder ="What is your name?"
 	name = user_name>
@@ -20,6 +21,10 @@
 	min = "12" 
 	placeholder ="What old are you?"
 	name = user_age>
+	
+	<input type= "text" 
+	placeholder ="What do you work?"
+	name = user_job>
 	
 	<input type= "submit" value ="Send">
 	</form>
