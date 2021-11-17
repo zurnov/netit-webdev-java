@@ -1,4 +1,4 @@
-package com.trelloclone.trelloclone.controller;
+package com.trelloclone.trelloclone.controllers;
 
 import com.trelloclone.trelloclone.models.pm.Workspace;
 import com.trelloclone.trelloclone.repositories.pm.WorkspaceRepository;

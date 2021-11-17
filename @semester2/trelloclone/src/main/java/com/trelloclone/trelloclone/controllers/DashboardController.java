@@ -1,4 +1,4 @@
-package com.trelloclone.trelloclone.controller;
+package com.trelloclone.trelloclone.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 

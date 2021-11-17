@@ -1,6 +1,6 @@
 package com.trelloclone.trelloclone;
 
-import com.trelloclone.trelloclone.controller.WorkspaceController;
+import com.trelloclone.trelloclone.controllers.WorkspaceController;
 import com.trelloclone.trelloclone.enums.WorkspaceType;
 import com.trelloclone.trelloclone.models.pm.Workspace;
 import com.trelloclone.trelloclone.repositories.pm.WorkspaceRepository;
