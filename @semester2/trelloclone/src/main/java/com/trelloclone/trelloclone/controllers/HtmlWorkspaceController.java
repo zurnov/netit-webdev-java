@@ -34,8 +34,8 @@ public class HtmlWorkspaceController {
     public String getCreateWorkspace(Model model){
         Workspace entity = new Workspace();
         model.addAttribute("workspace", entity);
-
-        return "create-workspace";
+//        return "/create-workspace"; Pozvam go susthto v DashboardController
+        return "main/create-workspace";
     }
     @PostMapping("/htmlsaveworkspace")
     public RedirectView saveWorkspace(@ModelAttribute Workspace entity){

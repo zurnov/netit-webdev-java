@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <div id="navigation--sidebar">
+
+        <div>
+            <ul>
+                <li>Boards</li>
+            </ul>
+        </div>
+
+        <div>
+            <div>
+                <span>Workspaces</span>
+                <a th:href="@{/create-workspace}">CREATE</a>
+            </div>
+            <div class="navigation--workspace"
+                 th:each="workspace :${collection}">
+                <div>
+                    <div th:text="${workspace.title}"></div>
+                    <ul>
+                        <li>Boards</li>
+                        <li>Members</li>
+                        <li>Settings</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

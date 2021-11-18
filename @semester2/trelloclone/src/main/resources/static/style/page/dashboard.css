@@ -1,0 +1,20 @@
+#navigation--main{
+    background  : #026aa7;
+    height      : 40px;
+    padding     : 4px;
+
+}
+#app-wrapper{
+    margin: auto;
+    width: 1100px;
+    padding-top: 36px;
+    display: flex;
+}
+#navigation--sidebar{
+    width: 246px ;
+    background: #dedede;
+
+}
+#content--main{
+
+}
