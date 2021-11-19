@@ -5,41 +5,16 @@
 <title>Insert title here</title>
 	<link th:href="@{/style/global/global.css}" rel="stylesheet"/>
 	<link th:href="@{/style/global/util.css}" rel="stylesheet"/>
+	<link th:href="@{/style/global/form.css}" rel="stylesheet"/>
 	<link th:href="@{/style/page/dashboard.css}" rel="stylesheet"/>
 </head>
 <body>
-	<div id="navigation--main">
-		<a th:href="@{/logout}">Log out</a>
-	</div>
+
+	<div th:replace="fragments/navigation-main :: navigation-main"></div>
 
 	<div id="app-wrapper">
 
-		<div id="navigation--sidebar">
-
-			<div>
-				<ul>
-					<li>Boards</li>
-				</ul>
-			</div>
-
-			<div>
-				<div>
-					<span>Workspaces</span>
-					<a th:href="@{/create-workspace}">CREATE</a>
-				</div>
-				<div class="navigation--workspace"
-					 th:each="workspace :${collection}">
-					<div>
-						<div th:text="${workspace.title}"></div>
-						<ul>
-							<li>Boards</li>
-							<li>Members</li>
-							<li>Settings</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
+		<div th:replace="fragments/navigation-sidebar :: navigation-sidebar(${collection})"></div>
 
 		<div id="content--main">
 

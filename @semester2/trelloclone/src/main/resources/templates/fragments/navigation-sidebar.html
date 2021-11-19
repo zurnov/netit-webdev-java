@@ -6,7 +6,7 @@
 </head>
 <body>
 
-    <div id="navigation--sidebar">
+    <div id="navigation--sidebar" th:fragment="navigation-sidebar(collection)">
 
         <div>
             <ul>
@@ -15,18 +15,18 @@
         </div>
 
         <div>
-            <div>
+            <div class="navigation--workspace">
                 <span>Workspaces</span>
                 <a th:href="@{/create-workspace}">CREATE</a>
             </div>
-            <div class="navigation--workspace"
-                 th:each="workspace :${collection}">
-                <div>
-                    <div th:text="${workspace.title}"></div>
+            <div th:each="workspace :${collection}">
+                <div class="navigation--workspace-panel">
+                    <div    class="navigation--workspace-panel-title"
+                            th:text="${workspace.title}"></div>
                     <ul>
-                        <li>Boards</li>
-                        <li>Members</li>
-                        <li>Settings</li>
+                        <li class="navigation--workspace-item">Boards</li>
+                        <li class="navigation--workspace-item">Members</li>
+                        <li class="navigation--workspace-item">Settings</li>
                     </ul>
                 </div>
             </div>

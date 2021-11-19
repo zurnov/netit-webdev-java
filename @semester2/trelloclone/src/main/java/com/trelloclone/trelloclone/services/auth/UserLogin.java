@@ -15,6 +15,14 @@ public class UserLogin implements UserDetails {
 		this.currentUser = user;
 	}
 
+	public User getUser(){
+		return this.currentUser;
+	}
+
+	public int getUserId(){
+		return this.currentUser.getId().intValue();
+	}
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
