@@ -5,6 +5,7 @@ import com.trelloclone.trelloclone.models.extra.Theme;
 import com.trelloclone.trelloclone.models.users.User;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -22,17 +23,21 @@ public class Board {
     @ManyToOne
     private Theme theme;
 
+    @JoinColumn(name="workspace_id", insertable = false, updatable = false)
     @ManyToOne
     private Workspace workspace;
+
+    @Column(name="workspace_id")
+    private int workspaceId;
 
     @OneToMany(mappedBy = "board")
     private List<BoardList> boardlists;
 
     @ManyToMany
     @JoinTable(
-            name = "tc_board_members",
-            joinColumns = @JoinColumn(name = "board_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id")
+            name				= "tc_board_members",
+            joinColumns 		= @JoinColumn(name="board_id"),
+            inverseJoinColumns 	= @JoinColumn(name="user_id")
     )
     private List<User> members;
 
@@ -67,6 +72,14 @@ public class Board {
         this.workspace = workspace;
     }
 
+    public int getWorkspaceId() {
+        return workspaceId;
+    }
+
+    public void setWorkspaceId(int workspaceId) {
+        this.workspaceId = workspaceId;
+    }
+
     public List<BoardList> getBoardlists() {
         return boardlists;
     }
@@ -81,6 +94,14 @@ public class Board {
 
     public void setMembers(List<User> members) {
         this.members = members;
+    }
+
+    public void setMembers(User singleMember) {
+
+        ArrayList<User> userCollection = new ArrayList<>();
+        userCollection.add(singleMember);
+
+        this.members = userCollection;
     }
 
     public BoardVisibility getIsVisible() {

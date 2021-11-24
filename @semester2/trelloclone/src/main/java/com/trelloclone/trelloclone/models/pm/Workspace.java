@@ -4,6 +4,7 @@ import com.trelloclone.trelloclone.enums.WorkspaceType;
 import com.trelloclone.trelloclone.models.users.User;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -92,5 +93,13 @@ public class Workspace {
 
     public void setMembers(List<User> members) {
         this.members = members;
+    }
+
+    public void setMembers(User singleMember) {
+
+        ArrayList<User> userCollection = new ArrayList<>();
+        userCollection.add(singleMember);
+
+        this.members = userCollection;
     }
 }

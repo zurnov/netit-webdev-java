@@ -21,7 +21,7 @@ public class User {
     private String password;
 
 
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
     private List<Workspace> workspaces;
 
     @OneToMany(mappedBy = "author")
