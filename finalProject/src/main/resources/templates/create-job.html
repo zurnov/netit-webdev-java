@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/style/global/global.css}" rel="stylesheet"/>
+    <link th:href="@{/style/global/util.css}" rel="stylesheet"/>
+    <link th:href="@{/style/global/form.css}" rel="stylesheet"/>
+    <link th:href="@{/style/page/dashboard.css}" rel="stylesheet"/>
+</head>
+<body>
+    <div th:replace="fragments/nav-main :: nav-main"></div>
+    <form
+            method="post"
+            th:action="@{/htmlsavejob}"
+            th:object="${job}">
+        <label>Title</label>
+        <input type="text" placeholder="Job title"
+        th:field="*{name}">
+        <label>Job Type</label>
+        <select th:field="*{jobType}">
+            <option th:each ="enumObject : ${T(com.example.demoproject.enums.JobType).values()}"
+                    th:value= "${enumObject}" th:text ="${enumObject}"></option>
+        </select>
+
+        <label>Description</label>
+        <textarea th:field="*{description}"></textarea>
+        <label>Salary</label>
+        <input type="number" placeholder="Job salary"
+        th:field="*{salary}">
+        <button type="submit">Create</button>
+    </form>
+
+</body>
+</html>

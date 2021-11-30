@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Insert title here</title>
+    <link th:href="@{/style/global/global.css}" rel="stylesheet"/>
+    <link th:href="@{/style/global/util.css}" rel="stylesheet"/>
+    <link th:href="@{/style/global/form.css}" rel="stylesheet"/>
+    <link th:href="@{/style/page/auth.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<div id="wrapper">
+
+    <!-- WEB APP Logo  -->
+    <div class="center ptb-36">
+        <img id="logo" src="https://dev.bg/wp-content/uploads/2020/07/logo.png">
+    </div>
+
+    <!-- SIGN UP : Component -->
+    <div id="auth-panel">
+
+        <div class="center pb-24">
+            <span class="header">Go find a job you little #$!*</span>
+        </div>
+        <div class="center">
+            <img id="cat-logo" src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/146704018/original/21fa5f3bb41de35289ebdb105a3b243b5f82e1e5/draw-your-cat-as-a-cartoon.png">
+        </div>
+
+        <div>
+            <a
+                    class="input input-button input-button--dark-blue"
+                    th:href="@{/signin}">Sign In</a>
+        </div>
+
+        <div class="mt-16">
+            <a
+                    class="input input-button input-button--blue"
+                    th:href="@{/signup}">Sign Up</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/style/global/global.css}" rel="stylesheet"/>
+    <link th:href="@{/style/global/util.css}" rel="stylesheet"/>
+    <link th:href="@{/style/global/form.css}" rel="stylesheet"/>
+    <link th:href="@{/style/page/dashboard.css}" rel="stylesheet"/>
+</head>
+<body>
+    <div th:replace="fragments/nav-main :: nav-main"></div>
+
+
+    <div th:each="job : ${collection}">
+
+        <div class="navigation--workspace-panel">
+            <div
+                    class="navigation--workspace-panel-title"
+                    th:text="${job.name}"></div>
+            <ul>
+                <li class="job-label" th:text="Salary"></li>
+                <li class="navigation--workspace-item" th:text="${job.salary}"></li>
+                <li class="job-label" th:text="Description"></li>
+                <li class="navigation--workspace-item" th:text="${job.description}"></li>
+                <li class="job-label">Created by</li>
+                <!-- TODO: Get job owner name by his id   -->
+                <li class="navigation--workspace-item" th:text="${job.ownerFullname}"></li>
+<!--                <li class="navigation&#45;&#45;workspace-item" th:text="${post.category}!=null? ${post.category.name}:''"></li>-->
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>
