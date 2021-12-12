@@ -10,26 +10,29 @@
 </head>
 <body>
     <div th:replace="fragments/nav-main :: nav-main"></div>
-    <form
-            method="post"
-            th:action="@{/htmlsavejob}"
-            th:object="${job}">
-        <label>Title</label>
-        <input type="text" placeholder="Job title"
-        th:field="*{name}">
-        <label>Job Type</label>
-        <select th:field="*{jobType}">
-            <option th:each ="enumObject : ${T(com.example.demoproject.enums.JobType).values()}"
-                    th:value= "${enumObject}" th:text ="${enumObject}"></option>
-        </select>
+    <div id="content--main" class="pt-36">
+        <form
+                method="post"
+                th:action="@{/htmlsavejob}"
+                th:object="${job}">
+            <label class="label">Title</label>
+            <input class="input" type="text" placeholder="Job title"
+            th:field="*{name}">
+            <label class="label">Job Type</label>
+            <select class="input-select" th:field="*{jobType}">
+                <option th:each ="enumObject : ${T(com.example.demoproject.enums.JobType).values()}"
+                        th:value= "${enumObject}" th:text ="${enumObject}"></option>
+            </select>
 
-        <label>Description</label>
-        <textarea th:field="*{description}"></textarea>
-        <label>Salary</label>
-        <input type="number" placeholder="Job salary"
-        th:field="*{salary}">
-        <button type="submit">Create</button>
-    </form>
+            <label class="label">Description</label>
+            <textarea class="input-select" th:field="*{description}"></textarea>
+            <label class="label">Salary</label>
+            <input class="input-select" type="number" placeholder="Job salary"
+            th:field="*{salary}">
+            <button class="input input-button--blue" type="submit">Create</button>
+        </form>
+    </div>
+
 
 </body>
 </html>

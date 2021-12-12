@@ -22,12 +22,20 @@
     background		: #0FC1DF;
     color			: #fff;
 }
+.input-button--blue:hover{
+    background		: gray;
+    color			: #0FC1DF;
+}
 
 .input-button--dark-blue {
     background		: #3944C4;
     color			: #fff;
 }
 
+.input-button--dark-blue:hover{
+    background		: gray;
+    color			: #3944C4;
+}
 .input-select{
     display         : block;
     width           : 100%;

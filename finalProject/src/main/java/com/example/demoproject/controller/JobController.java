@@ -1,73 +1,63 @@
 package com.example.demoproject.controller;
 
 import com.example.demoproject.models.Job;
+import com.example.demoproject.models.User;
+import com.example.demoproject.models.views.JobViewModel;
 import com.example.demoproject.repositories.JobRepository;
-import com.example.demoproject.wrapper.ResponseMessage;
+import com.example.demoproject.services.UserLogin;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.Arrays;
 
-@RestController
-@RequestMapping("/job")
+@Controller
 public class JobController {
+    private String controllerPageTitle = "Job Panel";
 
-    public final static String WORKFLOW_CREATE_SUCCSESS    = "Workflow created successfully";
-    public final static String WORKFLOW_UPDATE_SUCCSESS    = "Workflow updated successfully";
-    public final static String WORKFLOW_REMOVE_SUCCSESS    = "Workflow removed successfully";
-    public final static String WORKFLOW_NOT_FOUND          = "Workflow does not exist";
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Autowired
     private JobRepository jobRepository;
 
-    //Get Job
-    @GetMapping("/")
-    public ResponseEntity getAllJobs(){
-       List<Job> httpResult = this.jobRepository.findAll();
-       return ResponseMessage.success(httpResult);
-    }
-    @GetMapping("/{id}")
-    public ResponseEntity getSingleJob(@PathVariable("id") int id){
-        Optional<Job> httpResult = this.jobRepository.findById(id);
-        if(httpResult.isPresent()){
-            return  ResponseMessage.success(httpResult.get());
-        }
-        return ResponseMessage.notFound();
-    }
-    //TODO Add Job
-    @PostMapping("/")
-    public ResponseEntity createJob(@RequestBody Job entity){
-       var httpResult = this.jobRepository.save(entity);
-       return ResponseMessage.success(WORKFLOW_CREATE_SUCCSESS, httpResult);
-
-    }
-    //TODO Update Job
-    @PostMapping("/{id}")
-    public ResponseEntity updateJob(@RequestBody Job entity,@PathVariable("id") int id){
-        Optional<Job> httpResult = this.jobRepository.findById(id);
-
-        if (httpResult.isPresent()){
-            Job existingEntity = httpResult.get();
-            existingEntity.setName(entity.getName());
-            existingEntity.setDescription(entity.getDescription());
-            existingEntity.setJobStatus(entity.getJobStatus());
-            existingEntity.setSalary(entity.getSalary());
-            return ResponseMessage.success(WORKFLOW_UPDATE_SUCCSESS, existingEntity);
-        }
-        return ResponseMessage.notFound();
+    @GetMapping("/htmlgetindex")
+    public String getIndexPage(){
+        return "index";
     }
 
+    @GetMapping("/htmlgetjob")
+    public String getJobPage(Model model){
+        var jobCollection =
+                Arrays.asList(this.modelMapper.map(this.jobRepository.findAll(), JobViewModel[].class));
 
-    //TODO Delete Job
-    @DeleteMapping("/{id}")
-    public ResponseEntity deleteJob(@PathVariable("id") int id){
-        Optional<Job> httpResult = this.jobRepository.findById(id);
-        if (httpResult.isPresent()){
-            this.jobRepository.deleteById(id);
-            return ResponseMessage.success(WORKFLOW_REMOVE_SUCCSESS);
-        }
-        return ResponseMessage.notFound(WORKFLOW_NOT_FOUND);
+        model.addAttribute("name", this.controllerPageTitle);
+        model.addAttribute("collection",jobCollection);
+        return "job";
     }
+
+    @GetMapping("/htmlcreatejob")
+    public String getCreateJob(Model model){
+        Job entity = new Job();
+        model.addAttribute("job",entity);
+        return "create-job";
+    }
+    @PostMapping("/htmlsavejob")
+    public RedirectView saveJob(@ModelAttribute Job entity){
+        Authentication auth          = SecurityContextHolder.getContext().getAuthentication();
+        UserLogin currentUserModel   = (UserLogin) auth.getPrincipal();
+        User currentUser             = currentUserModel.getUser();
+
+        entity.setOwner(currentUser);
+        this.jobRepository.save(entity);
+        return new RedirectView("/htmlgetjob");
+    }
+
 }

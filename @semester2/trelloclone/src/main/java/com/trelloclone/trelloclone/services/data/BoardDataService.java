@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import com.trelloclone.trelloclone.models.pm.BoardList;
+import com.trelloclone.trelloclone.repositories.pm.BoardListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,6 +29,9 @@ public class BoardDataService {
     @Autowired
     private ThemeRepository themeRepository;
 
+    @Autowired
+    private BoardListRepository boardListRepository;
+
     public List<Theme> getAllThemes() {
         return themeRepository.findAll();
     }
@@ -39,6 +44,10 @@ public class BoardDataService {
         return this.boardRepository.findByWorkspaceId(id, currentUserModel.getUserId());
     }
 
+    public List<BoardList> getBoardLists(int boardId){
+        return this.boardListRepository.findAllByBoardId(boardId);
+    }
+
     public Board createBoard(Board entity, int workspaceId) {
 
         Authentication auth 		= SecurityContextHolder.getContext().getAuthentication();
@@ -49,4 +58,12 @@ public class BoardDataService {
 
         return this.boardRepository.save(entity);
     }
+
+    public void createBoardList(BoardList entity, int boardId){
+
+        entity.setBoardId(boardId);
+        this.boardListRepository.save(entity);
+
+    }
+
 }

@@ -1,10 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<meta charset="ISO-8859-1">
+<title>Title</title>
+    <link th:href="@{/style/global/global.css}" rel="stylesheet"/>
+    <link th:href="@{/style/global/util.css}" rel="stylesheet"/>
+    <link th:href="@{/style/global/form.css}" rel="stylesheet"/>
+    <link th:href="@{/style/page/board.css}" rel="stylesheet"/>
 </head>
-<body>
-    <h1>WELCOME TO THIS PM BOARD</h1>
+<body class="board-background">
+    <div class="layout--card">
+        <div
+                th:each="boardList : ${boardListCollection}"
+                class="board">
+
+            <div class="board-content">
+
+                <div th:text="${boardList.title}"></div>
+                <!-- LOOP ALL CARDS-->
+                <div class="board--add-card">
+                    <a th:href="@{|/boards/${boardId}/?action=add-card|}">Add card</a>
+                </div>
+                <div>
+                    <form
+                            th:method="post"
+                            th:action="@{|/boards/${boardId}/card/create|}"
+                            th:object="${card}">
+                        <input type="text"th:field="*{title}">
+                        <button
+                                class="input input-button input-button--blue"
+                                type="submit">Add card</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div
+                th:if="${param.action == null}"
+                class="board">
+            <a th:href="@{|/boards/${boardId}?action=add-list|}">Add list</a>
+        </div>
+
+        <div class="board" th:if="${param.action != null}">
+            <form
+                    th:method="post"
+                    th:action="@{|/boards/${boardId}|}"
+                    th:object="${boardList}">
+                <input type="text"th:field="*{title}">
+                <button
+                        class="input input-button input-button--blue"
+                        type="submit">Add List</button>
+
+            </form>
+        </div>
+    </div>
 </body>
 </html>

@@ -12,8 +12,12 @@ public class BoardList {
 
     private String title;
 
+    @JoinColumn(name = "board_id", insertable = false,updatable = false)
     @ManyToOne
     private Board board;
+
+    @Column(name = "board_id")
+    private int boardId;
 
 
     @OneToMany(mappedBy = "boardList")
@@ -44,6 +48,14 @@ public class BoardList {
 
     public void setBoard(Board board) {
         this.board = board;
+    }
+
+    public int getBoardId() {
+        return boardId;
+    }
+
+    public void setBoardId(int boardId) {
+        this.boardId = boardId;
     }
 
     public List<Card> getCards() {

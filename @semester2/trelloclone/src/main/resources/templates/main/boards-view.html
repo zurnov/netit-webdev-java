@@ -19,7 +19,9 @@
                     class="board"
                     th:each="board : ${boardCollection}">
                     <div class="board-content">
+                        <a th:href="@{|/boards/${board.id}|}">
                         <span th:text="${board.title}"></span>
+                        </a>
                     </div>
 
             </div>
